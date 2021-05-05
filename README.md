@@ -12,6 +12,7 @@
 `pip3 install -r requirements.txt`
 
 - Step 2.1: Install python tk to show matplotlib(For now, Matplotlib use agg instead of tk)
+
 `sudo apt-get install python3-tk`
 
 ## Usage 🚀
