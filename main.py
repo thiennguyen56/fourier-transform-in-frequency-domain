@@ -59,25 +59,28 @@ class MyWindow(QtWidgets.QMainWindow):
         if currentValue == 'High Pass Filtering':
             image_result = hpf(image)           
         else:
-            image_result = lpf(image)
-        print(image)
-        print(image_result)     
+            image_result = lpf(image)        
+        print(image_result.data)     
 
         # Convert Numpy Array to QImage Object :
-
-        # data = Image.fromarray(image_result, mode="RGB")   
+        
         # qImg = numpyQImage(image_result)        
-        # qimage = QtGui.QImage(image_result.data, height,width ,QtGui.QImage.Format_RGB888)
-
+            # or : 
+        height, width = image_result.shape[:2]
+        fmt = QtGui.QImage.Format_RGB888
+        qimage = QtGui.QImage(image_result.data, height, width,fmt)
+        print(height,width,fmt)
+        pixmap = QPixmap(qimage)
+            # or :
         # qImg = qimage2ndarray.array2qimage(image_result)
-        # print(qImg)
+        # print(qImg.isGrayscale())
         # pixmap = QPixmap.fromImage(qImg)
         # print(pixmap)
 
         # Convert Numpy Array to Image :
-        im = Image.fromarray(image_result).convert(mode="P")
-        im.save("result.jpg")
-        pixmap = QPixmap("result.jpeg")
+        # im = Image.fromarray(image_result).convert(mode="L")
+        # im.save("result.jpg")
+        # pixmap = QPixmap("result.jpeg")
 
         # Display Image
         pixmap = pixmap.scaled(299,499,QtCore.Qt.KeepAspectRatio, QtCore.Qt.SmoothTransformation)        
