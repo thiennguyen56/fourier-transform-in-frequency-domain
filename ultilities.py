@@ -66,6 +66,7 @@ if __name__ == '__main__':
     image = cv2.imread('messi5.jpg',0)
     lps_input = lpf(image)
     hps_input = hpf(image)
+    print(image)
     print(lps_input)
     print(hps_input)
     plt.subplot(121),plt.imshow(image, cmap = 'gray')
