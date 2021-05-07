@@ -3,8 +3,7 @@ import cv2
 import math
 from matplotlib import pyplot as plt
 
-def hpf(image):
-    radius=100
+def hpf(image, radius):
     n=1
 
     fft = cv2.dft(np.float32(image), flags=cv2.DFT_COMPLEX_OUTPUT)
@@ -37,8 +36,7 @@ def hpf(image):
 
     return image_filtering
 
-def lpf(image):
-    radius=50
+def lpf(image, radius):
     fft = cv2.dft(np.float32(image), flags=cv2.DFT_COMPLEX_OUTPUT)
             # Centralize fft, the generated dshift is still a three-dimensional array
     dshift = np.fft.fftshift(fft)
@@ -64,8 +62,8 @@ def lpf(image):
 
 if __name__ == '__main__':
     image = cv2.imread('messi5.jpg',0)
-    lps_input = lpf(image)
-    hps_input = hpf(image)
+    lps_input = lpf(image,50)
+    hps_input = hpf(image,50)
     print(image)
     print(lps_input)
     print(hps_input)
